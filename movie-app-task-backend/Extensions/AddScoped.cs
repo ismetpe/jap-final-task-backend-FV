@@ -1,5 +1,8 @@
 ﻿using Core.Interfaces;
+using Core.Models.Models;
+using Core.Validators;
 using Database.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,6 +26,7 @@ namespace movie_app_task_backend.Extensions
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAdminsService, AdminsService>();
             services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<IValidator<AddMovieDto>, MediaValidator>();
         }
     }
 }

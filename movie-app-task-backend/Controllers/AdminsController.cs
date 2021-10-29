@@ -21,6 +21,15 @@ namespace movie_app_task_backend.Controllers
         [HttpPost("add_movie")]
         public async Task<ActionResult<IEnumerable<Media>>> AddMovie(AddMovieDto request)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+
+                // re-render the view when validation failed.
+                //return View(model);
+            }
+
             return Ok(await _adminsService.AddMovieAsync(request));
         }
         [HttpPost("add_screening")]
