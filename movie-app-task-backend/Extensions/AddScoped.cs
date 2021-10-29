@@ -29,9 +29,11 @@ namespace movie_app_task_backend.Extensions
 
             // validation 
             services.AddScoped<IValidator<AddMovieDto>, MovieValidator>();
+            services.AddScoped<IValidator<EditMovieDto>, EditMovieValidator>();
             services.AddScoped<IValidator<AddScreeningDto>, ScreeningValidator>();
-            services.AddScoped<IValidator<AddPurchasedTicketDto>, PurschasedTicketValidator>();
+            services.AddScoped<IValidator<AddPurchasedTicketDto>, BuyTicketValidator>();
             services.AddScoped<IValidator<UserLoginDto>, LoginValidator>();
+            services.AddScoped<IValidator<UserRegistrationDto>, RegistrationValidator>();
         }
     }
 }

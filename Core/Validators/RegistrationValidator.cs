@@ -10,6 +10,11 @@ namespace Core.Validators
 {
     public class RegistrationValidator : AbstractValidator<UserRegistrationDto>
     {
-
+        public RegistrationValidator()
+        {
+            RuleFor(p => p.Username).NotEmpty();
+            RuleFor(p => p.Password).NotEmpty();
+        
+        }
     }
 }

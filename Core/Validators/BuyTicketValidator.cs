@@ -10,5 +10,11 @@ namespace Core.Validators
 {
     public class BuyTicketValidator : AbstractValidator<AddPurchasedTicketDto>
     {
+        public BuyTicketValidator()
+        {
+            RuleFor(p => p.NumberOfTickets).NotEmpty();
+            RuleFor(p => p.DateOfBuying).NotEmpty();
+
+        }
     }
 }
