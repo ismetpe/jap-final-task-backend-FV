@@ -22,6 +22,11 @@ namespace movie_app_task_backend.Controllers
         [HttpPost("buy_ticket")]
         public async Task<ActionResult<int>> BuyTicket([FromBody] AddPurchasedTicketDto req)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+
+            }
             return Ok(await _screeningsService.BuyTickets(req));
         }
         [HttpGet("screenings_by_movie")]

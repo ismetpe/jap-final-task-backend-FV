@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Database;
@@ -40,10 +41,15 @@ namespace movie_app_task_backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers().AddFluentValidation(s =>
+            services.AddControllers().AddFluentValidation(fv =>
             {
-                s.RegisterValidatorsFromAssemblyContaining<Startup>();
-                s.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+                fv.ImplicitlyValidateChildProperties = true;
+                fv.ImplicitlyValidateRootCollectionElements = true;
+
+                fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+                // Other way to register validators
+                //fv.RegisterValidatorsFromAssemblyContaining<Startup>();
             });
             services.AddAutoMapper(typeof(Startup));
 

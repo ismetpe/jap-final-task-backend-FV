@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Core.Validators
 {
-    public class MediaValidator : AbstractValidator<AddMovieDto>
+    public class MovieValidator : AbstractValidator<AddMovieDto>
     {
-        public MediaValidator()
+        public MovieValidator()
         {
             RuleFor(p => p.Title).NotEmpty();
             RuleFor(p => p.Description).NotEmpty();

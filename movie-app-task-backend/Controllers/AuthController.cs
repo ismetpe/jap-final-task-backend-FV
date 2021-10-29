@@ -24,6 +24,11 @@ namespace movie_app_task_backend.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<ServiceResponse<int>>> Register(RegisterRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+
+            }
             var user = new User
             {
                 Username = request.Username,
@@ -38,6 +43,11 @@ namespace movie_app_task_backend.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<ServiceResponse<string>>> Login(LoginRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+
+            }
             var response = await _authService.Login(request.Username, request.Password);
 
             return (response.Success) ? Ok(response) : BadRequest(response);

@@ -26,8 +26,6 @@ namespace movie_app_task_backend.Controllers
             {
                 return BadRequest(ModelState);
 
-                // re-render the view when validation failed.
-                //return View(model);
             }
 
             return Ok(await _adminsService.AddMovieAsync(request));
@@ -35,12 +33,24 @@ namespace movie_app_task_backend.Controllers
         [HttpPost("add_screening")]
         public async Task<ActionResult<IEnumerable<Media>>> AddScreening(AddScreeningDto request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+
+            }
+
             return Ok(await _adminsService.AddScreeningsAsync(request));
         }
 
         [HttpPost("edit_movie")]
         public async Task<ActionResult<IEnumerable<Media>>> EditMovie(EditMovieDto request,int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+
+            }
+
             return Ok(await _adminsService.EditMovieAsync(request,id));
         }
     }
